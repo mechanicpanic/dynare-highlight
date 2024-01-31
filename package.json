@@ -1,0 +1,25 @@
+{
+  "name": "dynare-highlight",
+  "displayName": "dynare-highlight",
+  "description": "Syntax Highlighting for Dynare .mod files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "dynare",
+      "aliases": ["Dynare", "dynare"],
+      "extensions": [".mod"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "dynare",
+      "scopeName": "source.dynare",
+      "path": "./syntaxes/dynare.tmLanguage.json"
+    }]
+  }
+}
