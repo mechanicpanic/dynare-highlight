@@ -3,6 +3,14 @@
 	"name": "Dynare",
 	"patterns": [
 		{
+			"name": "comment.line.percentage.dynare",
+			"match": "\\s*%.*$"
+		},
+		{
+			"name": "comment.line.double-slash.dynare",
+			"match": "\\s*//.*$"
+		},
+		{
 			"name": "comment.block.dynare",
 			"begin": "/\\*",
 			"end": "\\*/",
@@ -14,24 +22,34 @@
 			]
 		},
 		{
-			"name": "comment.line.percentage.dynare",
-			"match": "%.*"
-		},
-		{
-			"name": "comment.line.double-slash.dynare",
-			"match": "//.*"
-		},
-		{
 			"name": "keyword.operator.arithmetic.dynare",
 			"match": "\\s*(-|\\+|\\*|\\/|\\^)\\s*"
 		},
 		{
 			"name": "keyword.operator.comparison.dynare",
-			"match": "\\s*(==|~=|<=|>=|<|>|&&|!)\\s*"
+			"match": "\\s*(==|!=|<=|>=|<|>|&&|!)\\s*"
 		},
 		{
 			"name": "keyword.operator.assignment.dynare",
 			"match": "\\s*(=)\\s*"
+			
+		},
+
+		{
+			"name": "constant.numeric.float.dynare",
+			"match": "\\s*(\\d+\\.\\d+|\\d*\\.\\d+)([eEf][+-]?[0-9]+)?\\s*"
+		},
+		{
+			"name": "constant.numeric.float.dynare",
+			"match": "\\s*\\d+[eEf][+-]?[0-9]+\\s*"
+		},
+		{
+			"name": "constant.numeric.integer.dynare",
+			"match": "\\s*\\d+\\s*"
+		},
+		{
+			"name": "constant.language.dynare",
+			"match": "\\b(inf|nan)\\s*\\b"
 		},
 		{
 			"name": "keyword.control.directive.dynare",
@@ -42,24 +60,18 @@
 			"match": "\\b(model|steady_state_model|initval|endval|histval|epilogue|shocks|mshocks|homotopy_setup|observation_trends|estimated_params|estimated_params_init|estimated_params_bounds|shock_groups|conditional_forecast_paths|optim_weights|osr_params_bounds|ramsey_constraints|irf_calibration|moment_calibration|identification|svar_identification|matched_moments|occbin_constraints|surprise|overwrite|bind|relax|verbatim|end|node|cluster|paths|hooks|target|pac_target_info|auxname_target_nonstationary|component|growth|auxname|kind)\\s*\\b"
 		},
 		{
-			"name":"entity.name.function",
+			"name": "entity.name.function.dynare",
 			"match": "\\b(dynare|var|varexo|varexo_det|parameters|change_type|model_local_variable|predetermined_variables|trend_var|log_trend_var|external_function|write_latex_original_model|write_latex_dynamic_model|write_latex_static_model|write_latex_steady_state_model|resid|initval_file|histval_file|dsample|periods|values|scales|corr|stderr|steady|check|model_diagnostics|model_info|print_bytecode_dynamic_model|print_bytecode_static_model|perfect_foresight_setup|perfect_foresight_solver|simul|stoch_simul|extended_path|varobs|estimation|unit_root_vars|bvar_density|model_comparison|shock_decomposition|realtime_shock_decomposition|plot_shock_decomposition|calib_smoother|forecast|conditional_forecast|plot_conditional_forecast|bvar_forecast|smoother2histval|osr|osr_params|ramsey_model|ramsey_policy|discretionary_policy|planner_objective|dynare_sensitivity|markov_switching|svar|sbvar|ms_estimation|ms_simulation|ms_compute_mdd|ms_compute_probabilities|ms_irf|ms_forecast|ms_variance_decomposition|rplot|dynatype|dynasave|set_dynare_seed|save_params_and_steady_state|load_params_and_steady_state|dynare_version|write_latex_definitions|write_latex_parameter_table|write_latex_prior_table|collect_latex_files|prior_function|posterior_function|generate_trace_plots|evaluate_planner_objective|occbin_setup|occbin_solver|occbin_write_regimes|occbin_graph|method_of_moments|var_model|trend_component_model|var_expectation_model|pac_model)\\s*\\b"
 		},
 		{
-			"name":"constant",
-			"match":"\\b(inf|nan)\\s*\\b"
+			"name": "entity.name.function.report.dynare",
+			"match": "\\b(report|addPage|addSection|addGraph|addTable|addSeries|addParagraph|addVspace|write|compile)\\s*\\b"
 		},
 		{
-			"name":"keyword.operator.dynare",
-			"match":"\\b(STEADY_STATE|EXPECTATION|var_expectation|pac_expectation|pac_target_nonstationary)\\s*\\b"
-
-		}
-	],
-	"repository": {
-		"keywords": {
-
+			"name": "keyword.operator.dynare",
+			"match": "\\b(STEADY_STATE|EXPECTATION|var_expectation|pac_expectation|pac_target_nonstationary)\\s*\\b"
 		},
-		"strings": {
+		{
 			"name": "string.quoted.double.dynare",
 			"begin": "\"",
 			"end": "\"",
@@ -69,7 +81,36 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		{
+			"name": "string.quoted.single.dynare",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.dynare",
+					"match": "\\\\."
+				}
+			]
+		},
+		{
+			"name": "string.quoted.backtick.dynare",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.dynare",
+					"match": "\\\\."
+				}
+			]
+		},
+		{
+			"name":"variable.name",
+			"match":"\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*"
 		}
+	],
+	"repository": {
+		"keywords": {}
 	},
 	"scopeName": "source.dynare"
 }
